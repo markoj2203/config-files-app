@@ -18,3 +18,13 @@ export const changeTab = (tabID) => {
     document.getElementById("tab-2").checked = true;
   }
 };
+
+export const isEmpty = (obj) => {
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      return false;
+    }
+  }
+
+  return JSON.stringify(obj) === JSON.stringify({});
+};

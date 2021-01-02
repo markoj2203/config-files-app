@@ -229,3 +229,8 @@ a {
   align-items: center;
   width: 100%;
 }
+
+.form-group {
+  display: flex;
+  align-items: baseline;
+}
