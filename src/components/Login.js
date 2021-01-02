@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { validateEmail } from "../functions/main";
 
@@ -7,7 +8,8 @@ export default function Login() {
   const [pass, setPass] = useState("");
   const [checkErr, setCheckErr] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [token, setToken] = useState("");
+
+  const dispatch = useDispatch();
 
   const loginUser = (e) => {
     e.preventDefault();
@@ -29,8 +31,7 @@ export default function Login() {
         })
           .then(function (response) {
             //handle success
-            setToken(response.data.token);
-            console.log(response);
+            dispatch({ type: "GET_AUTH_TOKEN", token: response.data.token });
           })
           .catch(function (error) {
             if (error.response) {

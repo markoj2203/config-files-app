@@ -10,7 +10,6 @@ export const validateEmail = (mail) => {
 };
 
 export const changeTab = (tabID) => {
-  console.log(tabID);
   if (tabID === "tab-1") {
     document.getElementById("tab-2").checked = false;
     document.getElementById("tab-1").checked = true;
