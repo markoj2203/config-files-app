@@ -14,7 +14,6 @@ import {
 
 function App() {
   const token = useSelector((state) => state.getAuthToken.token);
-  console.log(token);
   useEffect(() => {
     if (token === "" || token === undefined) {
       changeTab("tab-1");

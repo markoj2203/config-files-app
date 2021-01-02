@@ -1,7 +1,7 @@
 body {
   margin: 0;
   color: #6a6f8c;
-  background: #c8c8c8;
+  background: skyblue;
   font: 600 16px/18px "Open Sans", sans-serif;
 }
 
@@ -193,11 +193,6 @@ a {
   text-align: center;
 }
 
-.card {
-  width: 500px;
-  left: 100px;
-}
-
 ::placeholder {
   color: #b3b3b3;
 }
@@ -233,4 +228,5 @@ a {
 .form-group {
   display: flex;
   align-items: baseline;
+  padding-bottom: 3%;
 }

@@ -28,3 +28,19 @@ export const isEmpty = (obj) => {
 
   return JSON.stringify(obj) === JSON.stringify({});
 };
+
+export const errorShowHideMessage = (divID) => {
+  document.getElementById(divID).style.display = "block";
+  setTimeout(function () {
+    document.getElementById(divID).style.display = "none";
+  }, 3000);
+};
+
+export const isJsonString = (str) => {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};

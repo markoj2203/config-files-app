@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { validateEmail } from "../functions/main";
+import { validateEmail, errorShowHideMessage } from "../functions/main";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,10 +17,12 @@ export default function Login() {
     if (email === "" || pass === "") {
       setCheckErr(true);
       setErrorMessage("You have a empty fields, all fields are required!");
+      errorShowHideMessage("errMess");
     } else {
       if (validateEmail(email) === false) {
         setCheckErr(true);
         setErrorMessage("You have entered an invalid email address!");
+        errorShowHideMessage("errMess");
       } else {
         axios({
           method: "post",
@@ -38,8 +40,7 @@ export default function Login() {
               // Request made and server responded
               setCheckErr(true);
               setErrorMessage(error.response.data.Message);
-              console.log(error.response.data.Message);
-              //console.log(error.response.headers);
+              errorShowHideMessage("errMess");
             }
           });
       }
@@ -85,7 +86,10 @@ export default function Login() {
             onClick={loginUser}
           />{" "}
         </div>
-        <div className={checkErr === true ? "text-danger" : "text-success"}>
+        <div
+          id="errMess"
+          className={checkErr === true ? "text-danger" : "text-success"}
+        >
           {errorMessage}
         </div>
         <div className="hr"></div>

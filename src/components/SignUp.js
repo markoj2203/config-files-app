@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { validateEmail } from "../functions/main";
+import { validateEmail, errorShowHideMessage } from "../functions/main";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -15,13 +15,16 @@ export default function SignUp() {
     if (email === "" || pass === "" || pass2 === "") {
       setCheckErr(true);
       setErrorMessage("You have a empty fields, all fields are required!");
+      errorShowHideMessage("errMess");
     } else {
       if (validateEmail(email) === false) {
         setCheckErr(true);
         setErrorMessage("You have entered an invalid email address!");
+        errorShowHideMessage("errMess");
       } else if (pass !== pass2) {
         setCheckErr(true);
         setErrorMessage("Passwords are not equal!");
+        errorShowHideMessage("errMess");
       } else {
         axios({
           method: "post",
@@ -34,6 +37,7 @@ export default function SignUp() {
             //handle success
             setCheckErr(false);
             setErrorMessage("User succesfully registred!Login to start app!");
+            errorShowHideMessage("errMess");
           })
           .catch(function (error) {
             //handle error
@@ -41,6 +45,7 @@ export default function SignUp() {
               // Request made and server responded
               setCheckErr(true);
               setErrorMessage(error.response.data.Message);
+              errorShowHideMessage("errMess");
             }
           });
       }
@@ -96,7 +101,10 @@ export default function SignUp() {
             onClick={registerUser}
           />
         </div>
-        <div className={checkErr === true ? "text-danger" : "text-success"}>
+        <div
+          id="errMess"
+          className={checkErr === true ? "text-danger" : "text-success"}
+        >
           {errorMessage}
         </div>
         <div className="hr"></div>
